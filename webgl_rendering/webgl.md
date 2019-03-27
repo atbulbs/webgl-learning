@@ -46,6 +46,27 @@ GLSL中三种数据类型:
   1. attribute
    只能在vertext shader中使用的变量, 一般用于传递顶点数据
   2. uniform
-   常量, 不能被shader修改, 被vertext与fragment共享使用 
+   常量, 不能被shader修改, 被vertext shader与fragment shader当做全局变量共享使用 
   3. varing
-   变量, vertext 与 fragment shader之间做数据传递
+   变量, vertext shader与fragment shader之间做数据传递, 使用场景: 颜色与位置有关系
+
+```c
+// Vertex Shader
+attribute vec3 a_position; // 起始位置, Original Vertices 原始顶点坐标
+uniform mat4 u_matrix; // 变换矩阵
+
+void main () {
+  gl_Position = u_matrix * a_position; // 在屏幕上渲染的位置 Clipspace Vertices
+}
+```
+
+```c
+// 光栅化 伪代码
+v_color = 0.45, 0.46, 0.50
+gl_FragColor = v_color
+// 三个顶点, 带着渐变色的三角形
+v0: 0.50, 0.57, 0.50
+v1: 0.88, 0.09, 0.50
+v2: 0.06, 0.17, 0.50
+```
+
