@@ -3,7 +3,7 @@ import Event from '../utils/event'
 class GameModel {
   constructor () {
     this.stage = ''
-    this.stageChanged = new Event(this)
+    this.stageChanged = new Event(this) // this => _sender
   }
 
   getStage () {

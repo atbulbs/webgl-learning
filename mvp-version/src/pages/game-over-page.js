@@ -31,9 +31,17 @@ export default class GameOverPage {
     this.canvas = document.createElement('canvas')
     this.canvas.width = window.innerWidth
     this.canvas.height = window.innerHeight
+    // 纹理
     this.texture = new THREE.Texture(this.canvas)
-    this.material = new THREE.MeshBasicMaterial({ map: this.texture, transparent: true });
-    this.geometry = new THREE.PlaneGeometry(sceneConf.frustumSize * 2, aspect * sceneConf.frustumSize * 2)
+    // 材质: 贴纹理
+    this.material = new THREE.MeshBasicMaterial({ 
+      map: this.texture, 
+      transparent: true 
+    });
+    // 平面几何图形
+    this.geometry = new THREE.PlaneGeometry(
+      sceneConf.frustumSize * 2,
+      aspect * sceneConf.frustumSize * 2)
     this.obj = new THREE.Mesh(this.geometry, this.material)
     this.obj.visible = false
     this.obj.position.z = 20
@@ -43,6 +51,7 @@ export default class GameOverPage {
     this.context.fillStyle = '#eee'
     this.context.font = '20px Georgia'
     this.context.fillText('Game Over', (window.innerWidth - 200) / 2 + 50, (window.innerHeight - 100) / 2 + 55)
+    // 在renderring时更新纹理
     this.texture.needsUpdate = true
     this.obj.visible = false
     this.camera.add(this.obj)

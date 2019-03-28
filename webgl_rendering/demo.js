@@ -22,7 +22,9 @@ VSHADER_SOURCE =
   'attribute vec4 a_Position;\n' + 
   // uniform 常量, 可以在 vertex 和 fragment 两者声明和共享
   // 通过uniform传递变换矩阵, 光线变换的参数
+  // 模型矩阵
   'uniform mat4 u_ModelMatrix;\n' +
+  // 视图矩阵
   'uniform mat4 u_ViewMatrix;\n' +
   'uniform mat4 u_ProjectionMatrix;\n' + 
   'void main () {\n' + 
@@ -116,6 +118,8 @@ var modelMatrix = new Matrix4()
 
 var u_ViewMatrix = gl.getUniformLocation(gl.program, 'u_ViewMatrix')
 var viewMatrix = new Matrix4()
+
+//  eye, center, up
 viewMatrix.lookAt(100, 100, 100, 0, 0, 0, 0, 1, 0)
 
 var u_ProjectionMatrix = gl.getUniformLocation(gl.program, 'u_ProjectionMatrix')

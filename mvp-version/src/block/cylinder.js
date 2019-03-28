@@ -1,9 +1,13 @@
+/**
+ * 圆柱体
+ **/
 import BaseBlock from './base'
 
 export default class Cylinder extends BaseBlock {
   constructor (x, y, z, type, width) {
     super('cylinder')
     const size = width || this.width
+    // 顶面底面半径, 高度, 
     var geometry = new THREE.CylinderGeometry(size / 2, size / 2, this.height, 120)
     var material = new THREE.MeshPhongMaterial({
       color: 0xffffff

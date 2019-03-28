@@ -10,8 +10,11 @@ class Scene {
   init () {
     this.instance = new THREE.Scene()
     const renderer = this.renderer = new THREE.WebGLRenderer(
-      { antialias: true,
+      { 
+        // 抗锯齿
+        antialias: true,
         canvas: canvas,
+        // 缓冲区
         preserveDrawingBuffer: true,
       }
     )

@@ -1,3 +1,6 @@
+/**
+ * 立方体
+ **/
 import BaseBlock from './base'
 
 export default class Cuboid extends BaseBlock {
@@ -10,6 +13,7 @@ export default class Cuboid extends BaseBlock {
     })
     this.instance = new THREE.Mesh( geometry, material )
     this.instance.receiveShadow = true
+    // 方便后期查找
     this.instance.name = 'block'
     this.x = x
     this.y = y
