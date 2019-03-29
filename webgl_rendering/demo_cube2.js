@@ -22,8 +22,11 @@ FSHADER_SOURCE =
     '#ifdef GL_ES\n' +
     'precision mediump float;\n' +
     '#endif\n' +
+    // 平行光的光强
     'uniform vec3 u_LightColor;\n' +
+    // 平行光的方向
     'uniform vec3 u_LightDir;\n' +
+    // 环境光的颜色
     'uniform vec3 u_LightColorAmbient;\n' +
     'varying vec4 v_Color;\n' +
     'varying vec4 v_Normal;\n' +
@@ -31,6 +34,7 @@ FSHADER_SOURCE =
     '  vec3 normal = normalize(vec3(v_Normal));\n' +
     '  float cos = max(dot(u_LightDir, normal), 0.0);\n' +
     '  vec3 diffuse = u_LightColor * v_Color.rgb * cos;\n' +
+    // v_Color.rgb拿到rgb
     '  vec3 ambient = u_LightColorAmbient * v_Color.rgb;\n' +
     '  vec4 r_Color = vec4(diffuse + ambient, v_Color.a);\n'+
     '  gl_FragColor = r_Color;\n' +
@@ -152,6 +156,7 @@ function initArrayBuffer(gl, data, num, type, attribute) {
     return true;
 }
 
+// 单位化
 function normalizeVector (vector) {
     var len = Math.sqrt(vector[0]**2 + vector[1]**2 + vector[2]**2)
     return [vector[0] / len, vector[1] / len, vector[2] / len]
@@ -176,6 +181,7 @@ gl.uniformMatrix4fv(u_MvpMatrix, false, mvpMatrix.elements);
 
 // set directional light
 var u_LightColor = gl.getUniformLocation(gl.program, 'u_LightColor');
+// 传入一个白光
 gl.uniform3f(u_LightColor, 1.0, 1.0, 1.0);
 
 var dir = normalizeVector([0.5, 3.0, 4.0]);
@@ -183,6 +189,7 @@ var u_LightDir = gl.getUniformLocation(gl.program, 'u_LightDir');
 gl.uniform3f(u_LightDir, dir[0], dir[1], dir[2]);
 
 var u_LightColorAmbient = gl.getUniformLocation(gl.program, 'u_LightColorAmbient');
+// 0.2强度的环境光
 gl.uniform3f(u_LightColorAmbient, 0.2, 0.2, 0.2);
 
 function draw () {
