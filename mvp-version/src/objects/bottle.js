@@ -24,11 +24,17 @@ class Bottle {
 
     this.bottle = new THREE.Object3D()
     var texture = this.loader.load('/game/res/images/head.png')
-    var basicMaterial = new THREE.MeshBasicMaterial({ map: texture })
-
+    var basicMaterial = new THREE.MeshBasicMaterial({ 
+      map: texture 
+    })
     var headRadius = 2.1 * 0.72
     this.human = new THREE.Object3D()
-    this.head = new THREE.Mesh(new THREE.OctahedronGeometry(headRadius * 1.4), basicMaterial)
+    this.head = new THREE.Mesh(
+      // 菱形
+      new THREE.OctahedronGeometry(headRadius * 1.4), 
+      // 纹理
+      basicMaterial
+    )
     this.head.castShadow = true
     var texture2 = this.loader.load('/game/res/images/bottom.png')
     this.bottom = new THREE.Mesh(new THREE.CylinderGeometry(0.88 * headRadius, 1.27 * headRadius, 2.68 * headRadius, 20), new THREE.MeshBasicMaterial({ map: texture2 }))
