@@ -18,6 +18,7 @@ class Scene {
         preserveDrawingBuffer: true,
       }
     )
+    // 开启阴影
     renderer.shadowMap.enabled = true
     renderer.shadowMap.type = THREE.PCFShadowMap
     // renderer.setClearColor(sceneConf.backgroundColor)
@@ -27,11 +28,13 @@ class Scene {
     this.light.init()
     this.instance.add(this.camera.instance)
     for (let lightType in this.light.instances) {
+      // 添加光源
       this.instance.add(this.light.instances[lightType])
     }
     this.background = background
     this.background.init()
     this.background.instance.position.z = -84
+    // 在相机坐标系添加背景
     this.camera.instance.add(this.background.instance)
   }
 
