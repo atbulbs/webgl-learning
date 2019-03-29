@@ -1,3 +1,6 @@
+/**
+ * 环境光和平行光
+ **/
 import { customAnimation } from '../../libs/animation'
 
 class Light {
@@ -6,17 +9,21 @@ class Light {
   }
 
   init () {
+    // 环境光, 削弱到0.8
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
+    // 平行光
     const shadowLight = new THREE.DirectionalLight(0xffffff, 0.3)
     this.shadowLight = shadowLight
     const shadowLightHelper = new THREE.DirectionalLightHelper(shadowLight, 5)
     shadowLight.position.set(10, 30, 20)
+    // 投射阴影
     shadowLight.castShadow = true
     var basicMaterial = new THREE.MeshBasicMaterial({ color: 0xF5F5F5 });
     this.shadowTarget = new THREE.Mesh(new THREE.PlaneGeometry(0.1, 0.1), basicMaterial)
     this.shadowTarget.visible = false
     this.shadowTarget.name = 'shadowTarget'
     shadowLight.target = this.shadowTarget
+    // shadow属性配置
     shadowLight.shadow.camera.near = 0.5
     shadowLight.shadow.camera.far = 500
     shadowLight.shadow.camera.left = -100
