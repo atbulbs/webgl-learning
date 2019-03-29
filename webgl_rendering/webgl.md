@@ -28,6 +28,7 @@ WEBGL渲染管线(或者叫图形管线, 将3D模型数据渲染到2D屏幕的�
 5. 完成上色后就会在屏幕上显示出来
 
 FrameBuffer: 离屏渲染的缓冲区(也叫帧缓冲区), 可以将片元着色器渲染出来的数据进行修改, 然后再在屏幕上显示(相当于画画打草稿), 以纹理Textures的形式贴在屏幕上
+帧缓冲区对象可以用来代替颜色缓冲区和深度缓冲区, 常用于生成动态纹理
 
 三角形的渲染: 
   1. Vertices数组, 在js代码中, js代码通过webgl API在显存的memory中定义一个Vertices数组对应的显存空间, 一个buffer
@@ -44,11 +45,11 @@ FrameBuffer: 离屏渲染的缓冲区(也叫帧缓冲区), 可以将片元着色
 
 GLSL中三种数据类型:
   1. attribute
-   只能在vertext shader中使用的变量, 一般用于传递顶点数据
+   只能在vertext shader中使用的变量, 一般用于传递顶点数据, 如a_position
   2. uniform
-   常量, 不能被shader修改, 被vertext shader与fragment shader当做全局变量共享使用 
+   常量, 不能被shader修改, 被vertext shader与fragment shader当做全局变量共享使用, 如u_matrix 
   3. varing
-   变量, vertext shader与fragment shader之间做数据传递, 使用场景: 颜色与位置有关系
+   变量, vertext shader与fragment shader之间做数据传递, 使用场景: 颜色与位置有关系, 如v_color
 
 ```c
 // Vertex Shader
