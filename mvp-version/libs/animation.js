@@ -1,3 +1,7 @@
+/**
+ * 动画库
+ **/
+
 import Tween from './tween'
 var animationId = -1
 var killAnimationId = animationId - 1
@@ -78,6 +82,7 @@ var TweenAnimation = exports.TweenAnimation = function TweenAnimation(from, to, 
 
     // duration, easing, callback均为可选参数
     // 而且顺序可以任意
+    // 设置默认的配置
     var options = {
         duration: 300,
         easing: 'Linear',
@@ -153,8 +158,7 @@ var TweenAnimation = exports.TweenAnimation = function TweenAnimation(from, to, 
             start = _start > start ? _start : start + 1;
         }
 
-        // 当前的运动位置
-
+        // 通过缓动函数, 当前的运动位置
         var value = fnGetValue(start, from, to - from, during);
 
         // 如果还没有运动到位，继续
