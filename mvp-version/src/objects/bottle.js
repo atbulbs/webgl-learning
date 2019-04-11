@@ -28,6 +28,7 @@ class Bottle {
       map: texture 
     })
     var headRadius = 2.1 * 0.72
+    // 瓶子自身运动的3D元素的组合
     this.human = new THREE.Object3D()
     this.head = new THREE.Mesh(
       // 菱形
@@ -87,6 +88,7 @@ class Bottle {
     this.scale = 1
   }
 
+  // 收缩
   _shrink () {
     const DELTA_SCALE = 0.005
     const HORIZON_DELTA_SCALE = 0.007
@@ -122,7 +124,7 @@ class Bottle {
   }
 
   
-
+  // 设置方向和轴
   setDirection (direction, axis) {
     this.direction = direction
     this.axis = axis
@@ -132,6 +134,7 @@ class Bottle {
     const scale = 1.4
     this.human.rotation.z = this.human.rotation.x = 0
     if (this.direction == 0) { // x
+      // 0.14秒转半圈
       customAnimation.to(this.human.rotation, 0.14, { z: this.human.rotation.z - Math.PI })
       customAnimation.to(this.human.rotation, 0.18, { z: this.human.rotation.z - 2 * Math.PI, delay: 0.14 })
       customAnimation.to(this.head.position, 0.1, { y: this.head.position.y + 0.9 * scale, x: this.head.position.x + 0.45 * scale })
