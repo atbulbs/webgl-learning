@@ -1,4 +1,5 @@
 var Tween = {
+  // start, from, to - from, during
   Linear: function Linear(t, b, c, d) {
       return c * t / d + b;
   },
